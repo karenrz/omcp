@@ -1,0 +1,234 @@
+.u-section-1 .u-sheet-1 {
+  min-height: 747px;
+}
+
+.u-section-1 .u-text-1 {
+  text-transform: none;
+  margin: 20px 733px 0 0;
+}
+
+.u-section-1 .u-btn-1 {
+  border-style: none;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  margin: 34px auto 0 50px;
+}
+
+.u-section-1 .u-btn-2 {
+  border-style: none;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  margin: -45px auto 0;
+  padding: 10px 36px;
+}
+
+.u-section-1 .u-btn-3 {
+  border-style: none;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  margin: -45px 50px 60px auto;
+  padding: 10px 15px 10px 14px;
+}
+
+@media (max-width: 1199px) {
+  .u-section-1 .u-text-1 {
+    margin-right: 533px;
+  }
+
+  .u-section-1 .u-btn-1 {
+    margin-left: 0;
+  }
+
+  .u-section-1 .u-btn-3 {
+    margin-right: 0;
+  }
+}
+
+@media (max-width: 991px) {
+  .u-section-1 .u-text-1 {
+    margin-right: 313px;
+  }
+}
+
+@media (max-width: 767px) {
+  .u-section-1 .u-text-1 {
+    margin-right: 133px;
+  }
+}
+
+@media (max-width: 575px) {
+  .u-section-1 .u-text-1 {
+    margin-right: 0;
+  }
+}@import url(https://fonts.googleapis.com/css?family=Roboto:400,900);
+$yearHeight: 60px;
+$dayHeight: 35px;
+$dayWidth: 35px;
+$maxWeeks: 120;
+$headerHeight: $dayHeight*.75;
+$dayToTakeMonth: 4; /* How many days for a month to claim a row as its month?*/
+$bgcolor: rgba(68,97,157,1);
+* {
+  -webkit-box-sizing: border-box; 
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+}
+body {
+  font-family: 'Roboto', sans-serif;
+  font-weight: bold;
+  background: black;
+  padding: 0;
+  margin: 0;
+	height: 120vh;
+}
+.container {
+  position: relative;
+  width: $dayWidth*8;
+  background: $bgcolor;
+  border-width: 0;
+  height: $maxWeeks*$dayHeight/7+$yearHeight;
+}
+.container .calendar {
+  position: absolute;
+  width: $dayWidth*7;
+  margin: 0;
+  padding: 0;
+}
+.day {
+  display: inline-block;
+  list-style: none;
+  margin: 0;
+  padding: ($dayHeight*.25) 0;
+  position: absolute;
+  text-align: center;
+  width: $dayWidth;
+  height: $dayHeight;
+}
+.today {
+  background-color: rgba(255,165,0,.9) !Important;
+  /*rgba(80,24,137,1) */
+  color: black;
+}
+.today:before {
+  opacity: 1;
+  width: 0;
+  left: 0;
+  -webkit-transition: all .7s ease;
+}
+.today:hover:after {
+  -webkit-transition: all .7s ease;
+  content: "Today";
+  position: absolute;
+  top: 0;
+  left: -60px;
+  background-color: rgba(0,0,0,.4);
+  z-index: 21;
+  padding: ($dayHeight*.25) 5px;
+  text-shadow: none;
+  letter-spacing: 1px;
+  font-weight: normal;
+  width: auto;
+}
+.past {
+  color: rgba(120,120,120,.51);
+}
+/* week relative to top position*/
+@for $i from 0 through 55 {
+  [data-relativeweek="#{$i}"] {
+    top: ($dayHeight*$i+$headerHeight)+$yearHeight;
+  }  
+}
+/* x position of day*/ 
+@for $i from 1 through 7 {
+  .mondayFirst [data-dayofweek="#{$i % 7}"] {
+    left: ($dayWidth*$i);
+  }
+}
+/* header*/
+@for $i from 0 through 6 {
+  [data-dayofweek="#{$i % 7}"].header {
+    left: $dayWidth*$i+$dayWidth;
+  }
+}
+/* month */
+.jan, .jan[data-dayofweek='#{$dayToTakeMonth}']:before {
+  background-color: rgba(153,204,255,1) ;
+}
+.feb, .feb[data-dayofweek='#{$dayToTakeMonth}']:before {
+  background-color: rgba(204,255,255,1);
+}
+.mar, .mar[data-dayofweek='#{$dayToTakeMonth}']:before {
+  background-color: rgba(51,204,204,1);
+}
+.apr, .apr[data-dayofweek='#{$dayToTakeMonth}']:before {
+  background-color: rgba(204,255,204,1);
+}
+.may, .may[data-dayofweek='#{$dayToTakeMonth}']:before {
+  background-color: rgba(153,204,0,1);
+}
+.jun, .jun[data-dayofweek='#{$dayToTakeMonth}']:before {
+  background-color: rgba(255,255,153,1);
+}
+.jul, .jul[data-dayofweek='#{$dayToTakeMonth}']:before {
+  background-color: rgba(255,204,0,1);
+}
+.aug, .aug[data-dayofweek='#{$dayToTakeMonth}']:before {
+  background-color: rgba(255,153,0,1);
+}
+.sep, .sep[data-dayofweek='#{$dayToTakeMonth}']:before {
+  background-color: rgba(255,102,0,1);
+}
+.oct, .oct[data-dayofweek='#{$dayToTakeMonth}']:before {
+  background-color: rgba(255,128,128,1);
+}
+.nov, .nov[data-dayofweek='#{$dayToTakeMonth}']:before {
+  background-color: rgba(204,153,255,1);
+}
+.dec, .dec[data-dayofweek='#{$dayToTakeMonth}']:before {
+  background-color: rgba(204,204,255,1);
+}
+/* header */
+.header {
+  text-transform: uppercase;
+  font-size: .70em;
+  font-weight: bold;
+  top: $yearHeight;
+  background: black;
+  color: white;
+  padding: 6px 0 0;
+  height: $headerHeight;
+  position: absolute;
+  left: 0;
+  z-index: 10;
+}
+.header:nth-child(n+6) {
+  background-color: rgba(24,137,80,1);
+  color: white;
+}
+.day[data-dayofweek='#{$dayToTakeMonth}']:before {
+  content: attr(data-month);
+  position: absolute;
+  left: -($dayWidth*$dayToTakeMonth)-1;
+  top: 0;
+  width: $dayWidth;
+  color: black;
+  font-weight: normal;
+  text-transform: capitalize;
+  font-size: smaller;
+  padding: ($dayHeight*.25) 0;
+  height: ($dayHeight - ($dayHeight*.25)*2);
+}
+.year {
+  position: absolute;
+  top: -30px;
+  color: yellow;
+  right: 10px;
+  z-index: 20;
+  font-size: 48px;
+  opacity: .8;
+}
+.days {
+}
